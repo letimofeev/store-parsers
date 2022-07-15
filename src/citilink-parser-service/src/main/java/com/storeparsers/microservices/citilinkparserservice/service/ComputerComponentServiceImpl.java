@@ -22,10 +22,9 @@ public class ComputerComponentServiceImpl implements ComputerComponentService {
             int threadNum = Math.min(ManagementFactory.getThreadMXBean().getThreadCount(), pageCount);
             ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
             for (int i = 1; i <= pageCount; i++) {
-                E component = requiredType.getDeclaredConstructor().newInstance();
                 String pageUrl = url + String.format("?p=%d", i);
                 CitilinkPageParser<E> pageParser =
-                        new CitilinkPageParser<>(pageUrl, component);
+                        new CitilinkPageParser<>(pageUrl, requiredType);
                 executorService.submit(pageParser);
             }
             executorService.shutdown();

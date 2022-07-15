@@ -3,9 +3,12 @@ package com.storeparsers.microservices.citilinkparserservice.parser;
 import com.storeparsers.microservices.citilinkparserservice.config.CitilinkUrls;
 import com.storeparsers.microservices.citilinkparserservice.config.SpringApplicationContext;
 import com.storeparsers.microservices.citilinkparserservice.entity.ComputerComponent;
+import com.storeparsers.microservices.citilinkparserservice.parser.properties.ComputerComponentPropertiesResolver;
 import org.jsoup.nodes.Element;
 import org.springframework.context.ApplicationContext;
+import org.springframework.lang.NonNull;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,20 +21,30 @@ public class CitilinkElementParser<E extends ComputerComponent> {
     private Element titleElement;
     private final ApplicationContext applicationContext;
 
-    public CitilinkElementParser(Element element, E component) {
+    public CitilinkElementParser(Element element, @NonNull Class<E> requiredType) {
         this.element = element;
-        this.component = component;
+        try {
+            this.component = requiredType.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException
+                | InvocationTargetException | NoSuchMethodException e) {
+            throw new IllegalArgumentException(String.format(
+                    "Exception during creating component with type = %s; " +
+                    "nested exception: %s", requiredType.getName(), e.getMessage()));
+        }
         this.applicationContext = SpringApplicationContext.getApplicationContext();
-
         properties = new HashMap<>();
-
-        parsePrice();
-        parseTitleElement();
-        saveProperties();
+        parseAll();
     }
 
     public E getComponent() {
         return component;
+    }
+
+    private void parseAll() {
+        parsePrice();
+        parseTitleElement();
+        parseImageUrl();
+        parseProperties();
     }
 
     private void parsePrice() {
@@ -59,6 +72,21 @@ public class CitilinkElementParser<E extends ComputerComponent> {
     private void parseDisplayTitle() {
         String displayTitle = titleElement.text();
         component.setDisplayTitle(displayTitle);
+    }
+
+    private void parseImageUrl() {
+        Element imageElement = element.selectFirst("div.ProductCardHorizontal__image-block");
+        if (imageElement == null) {
+            return;
+        }
+        String imageUrl = imageElement.select("img")
+                .attr("src");
+        component.setImageUrl(imageUrl);
+    }
+
+    private void parseProperties() {
+        saveProperties();
+        ComputerComponentPropertiesResolver.resolve(component, properties);
     }
 
     private void saveProperties() {
