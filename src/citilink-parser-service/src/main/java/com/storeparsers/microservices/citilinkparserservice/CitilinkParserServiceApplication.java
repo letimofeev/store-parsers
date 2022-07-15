@@ -9,5 +9,4 @@ public class CitilinkParserServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(CitilinkParserServiceApplication.class, args);
     }
-
 }
