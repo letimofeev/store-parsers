@@ -2,20 +2,11 @@ package com.storeparsers.microservices.citilinkparserservice.entity;
 
 public abstract class ComputerComponent {
 
-    protected int id;
     protected String displayTitle;
     protected String url;
     protected String imageUrl;
     protected int price;
     protected boolean isStock;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getDisplayTitle() {
         return displayTitle;
