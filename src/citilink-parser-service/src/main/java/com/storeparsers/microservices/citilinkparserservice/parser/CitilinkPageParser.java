@@ -71,7 +71,7 @@ public class CitilinkPageParser<E extends ComputerComponent> implements Runnable
     private void sendComponentJsonToKafka(E component) throws JsonProcessingException {
         String componentJsonRepresentation = objectMapper.writeValueAsString(component);
         String topicName = applicationContext.getBean(KafkaTopicNameFactory.class)
-                .getTopicName(CitilinkGraphicsCard.class);
+                .getTopicName(requiredType);
         kafkaTemplate.send(topicName, componentJsonRepresentation);
     }
 
