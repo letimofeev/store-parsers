@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.storeparsers.microservices.citilinkparserservice.config.KafkaTopicNameFactory;
 import com.storeparsers.microservices.citilinkparserservice.config.SpringApplicationContext;
 import com.storeparsers.microservices.citilinkparserservice.entity.ComputerComponent;
-import com.storeparsers.microservices.citilinkparserservice.entity.GraphicsCard;
+import com.storeparsers.microservices.citilinkparserservice.entity.CitilinkGraphicsCard;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -71,7 +71,7 @@ public class CitilinkPageParser<E extends ComputerComponent> implements Runnable
     private void sendComponentJsonToKafka(E component) throws JsonProcessingException {
         String componentJsonRepresentation = objectMapper.writeValueAsString(component);
         String topicName = applicationContext.getBean(KafkaTopicNameFactory.class)
-                .getTopicName(GraphicsCard.class);
+                .getTopicName(CitilinkGraphicsCard.class);
         kafkaTemplate.send(topicName, componentJsonRepresentation);
     }
 

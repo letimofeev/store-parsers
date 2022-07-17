@@ -1,6 +1,6 @@
 package com.storeparsers.microservices.citilinkparserservice.entity;
 
-public class GraphicsCard extends ComputerComponent {
+public class CitilinkGraphicsCard extends ComputerComponent {
 
     private String connector;
     private String busWidth;
@@ -13,7 +13,7 @@ public class GraphicsCard extends ComputerComponent {
     private String additionalPowerConnectors;
     private String recommendedPowerSupply;
 
-    public GraphicsCard() {
+    public CitilinkGraphicsCard() {
     }
 
     public String getConnector() {

@@ -1,6 +1,5 @@
 package com.storeparsers.microservices.citilinkparserservice.config;
 
-import com.storeparsers.microservices.citilinkparserservice.entity.GraphicsCard;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,10 +1,10 @@
 package com.storeparsers.microservices.citilinkparserservice.parser.properties;
 
-import com.storeparsers.microservices.citilinkparserservice.entity.GraphicsCard;
+import com.storeparsers.microservices.citilinkparserservice.entity.CitilinkGraphicsCard;
 
 import java.util.Map;
 
-public class GraphicsCardPropertiesResolver {
+public class GraphicsCardProperties {
 
     private static final String VIDEO_CHIPSET = "Видеочипсет";
     private static final String GPU_FREQUENCY = "Частота графического процессора";
@@ -15,7 +15,7 @@ public class GraphicsCardPropertiesResolver {
     private static final String ADDITIONAL_POWER_CONNECTORS = "Разъемы дополнительного питания";
     private static final String RECOMMENDED_POWER_SUPPLY = "Рекомендуемая производителем мощность БП";
 
-    public static void resolve(GraphicsCard graphicsCard, Map<String, String> properties) {
+    public static void doSetProperties(CitilinkGraphicsCard graphicsCard, Map<String, String> properties) {
         graphicsCard.setVideoChipset(properties.get(VIDEO_CHIPSET));
         graphicsCard.setGPUFrequency(properties.get(GPU_FREQUENCY));
         graphicsCard.setVideoMemoryFrequency(properties.get(VIDEO_MEMORY_FREQUENCY));
