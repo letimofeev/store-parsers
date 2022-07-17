@@ -8,7 +8,7 @@
         <version>2.7.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.store-parsers.microservices</groupId>
+    <groupId>com.store-parser.microservice</groupId>
     <artifactId>citilink-parser-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>citilink-parser-service</name>
