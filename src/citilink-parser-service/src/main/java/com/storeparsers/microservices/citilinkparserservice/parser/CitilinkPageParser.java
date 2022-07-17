@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.storeparsers.microservices.citilinkparserservice.config.KafkaTopicNameFactory;
 import com.storeparsers.microservices.citilinkparserservice.config.SpringApplicationContext;
 import com.storeparsers.microservices.citilinkparserservice.entity.ComputerComponent;
-import com.storeparsers.microservices.citilinkparserservice.entity.CitilinkGraphicsCard;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,7 +1,7 @@
 package com.storeparsers.microservices.citilinkparserservice.controller;
 
 import com.storeparsers.microservices.citilinkparserservice.config.CitilinkUrls;
-import com.storeparsers.microservices.citilinkparserservice.entity.CitilinkGraphicsCard;
+import com.storeparsers.microservices.citilinkparserservice.entity.GraphicsCard;
 import com.storeparsers.microservices.citilinkparserservice.service.ComputerComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +19,9 @@ public class CitilinkParserController {
 
     @GetMapping("/graphics-card")
     public @ResponseBody
-    CitilinkGraphicsCard retrieveOne() {
+    GraphicsCard retrieveOne() {
         String graphicsCardUrl = citilinkUrls.getGraphicsCardUrl();
-        componentService.parseAll(graphicsCardUrl, CitilinkGraphicsCard.class);
+        componentService.parseAll(graphicsCardUrl, GraphicsCard.class);
         return null;
     }
 }

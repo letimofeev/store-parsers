@@ -1,7 +1,7 @@
 package com.storeparsers.microservices.citilinkparserservice.config;
 
 import com.storeparsers.microservices.citilinkparserservice.entity.ComputerComponent;
-import com.storeparsers.microservices.citilinkparserservice.entity.CitilinkGraphicsCard;
+import com.storeparsers.microservices.citilinkparserservice.entity.GraphicsCard;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ public class KafkaTopicNameFactory {
     private String graphicsCardTopicName;
 
     public <E extends ComputerComponent> String getTopicName(Class<E> type) {
-        if (type.equals(CitilinkGraphicsCard.class)) {
+        if (type.equals(GraphicsCard.class)) {
             return graphicsCardTopicName;
         }
         throw new IllegalArgumentException(String.format(
