@@ -6,6 +6,7 @@ import com.storeparsers.microservices.citilinkparserservice.parser.ComputerCompo
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,6 +19,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ComputerComponentServiceImpl implements ComputerComponentService {
 
+    @Value("${citilink.parser.timeout}")
+    private int timeout;
+
     @Override
     public <E extends ComputerComponent> void parseAll(String url, Class<E> requiredType) {
         try {
@@ -25,21 +29,20 @@ public class ComputerComponentServiceImpl implements ComputerComponentService {
             int threadNum = Math.min(ManagementFactory.getThreadMXBean().getThreadCount(), pageCount);
             ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
             for (int i = 1; i <= pageCount; i++) {
-                String pageUrl = url + String.format("?p=%d", i);
+                String pageUrl = String.format("%s?p=%d", url, i);
                 CitilinkPageParser<E> pageParser = new CitilinkPageParser<>(pageUrl, requiredType);
                 executorService.submit(pageParser);
             }
             executorService.shutdown();
-            int timeout = 30;
             boolean finished = executorService.awaitTermination(timeout, TimeUnit.SECONDS);
             if (!finished) {
-                log.warn("Parsing was not finished during" + timeout +" s timeout," +
-                        " some data might not be loaded");
+                log.warn(String.format("Parsing was not finished during %s s timeout," +
+                        " some data might not be loaded", timeout));
             }
         } catch (Exception e) {
-            String message = String.format("Exception during multithreaded parsing (url = %s); nested exception: %s",
-                    url, e.getMessage());
-            throw new ComputerComponentParseException(message, e);
+            throw new ComputerComponentParseException(String.format(
+                    "Exception during multithreaded parsing (url = %s); nested exception: %s",
+                    url, e.getMessage()), e);
         }
     }
 

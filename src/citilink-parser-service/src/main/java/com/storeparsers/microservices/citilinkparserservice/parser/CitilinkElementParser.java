@@ -29,7 +29,7 @@ public class CitilinkElementParser<E extends ComputerComponent> {
                 | InvocationTargetException | NoSuchMethodException e) {
             throw new IllegalArgumentException(String.format(
                     "Exception during creating component with type = %s; " +
-                    "nested exception: %s", requiredType.getName(), e.getMessage()));
+                    "nested exception: %s", requiredType.getSimpleName(), e.getMessage()));
         }
         this.applicationContext = SpringApplicationContext.getApplicationContext();
         properties = new HashMap<>();
