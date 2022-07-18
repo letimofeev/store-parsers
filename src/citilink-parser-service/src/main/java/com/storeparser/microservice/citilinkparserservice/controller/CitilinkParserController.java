@@ -6,9 +6,11 @@ import com.storeparser.microservice.citilinkparserservice.service.ComputerCompon
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping(value = "/parse")
 public class CitilinkParserController {
 
     @Autowired
@@ -17,9 +19,9 @@ public class CitilinkParserController {
     @Autowired
     private ComputerComponentService componentService;
 
+    // TODO: return info
     @GetMapping("/graphics-card")
-    public @ResponseBody
-    GraphicsCard retrieveOne() {
+    public @ResponseBody GraphicsCard parseAllGraphicsCards() {
         String graphicsCardUrl = citilinkUrls.getGraphicsCardUrl();
         componentService.parseAll(graphicsCardUrl, GraphicsCard.class);
         return null;
