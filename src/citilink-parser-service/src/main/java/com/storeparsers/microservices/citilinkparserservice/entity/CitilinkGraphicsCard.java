@@ -1,9 +1,7 @@
 package com.storeparsers.microservices.citilinkparserservice.entity;
 
-public class GraphicsCard extends ComputerComponent {
+public class CitilinkGraphicsCard extends ComputerComponent {
 
-    private String connector;
-    private String busWidth;
     private String videoChipset;
     private String GPUFrequency;
     private String videoMemoryFrequency;
@@ -13,23 +11,7 @@ public class GraphicsCard extends ComputerComponent {
     private String additionalPowerConnectors;
     private String recommendedPowerSupply;
 
-    public GraphicsCard() {
-    }
-
-    public String getConnector() {
-        return connector;
-    }
-
-    public void setConnector(String connector) {
-        this.connector = connector;
-    }
-
-    public String getBusWidth() {
-        return busWidth;
-    }
-
-    public void setBusWidth(String busWidth) {
-        this.busWidth = busWidth;
+    public CitilinkGraphicsCard() {
     }
 
     public String getVideoChipset() {

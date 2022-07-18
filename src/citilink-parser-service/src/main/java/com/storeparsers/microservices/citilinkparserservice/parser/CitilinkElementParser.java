@@ -3,7 +3,7 @@ package com.storeparsers.microservices.citilinkparserservice.parser;
 import com.storeparsers.microservices.citilinkparserservice.config.CitilinkUrls;
 import com.storeparsers.microservices.citilinkparserservice.config.SpringApplicationContext;
 import com.storeparsers.microservices.citilinkparserservice.entity.ComputerComponent;
-import com.storeparsers.microservices.citilinkparserservice.parser.properties.ComputerComponentPropertiesResolver;
+import com.storeparsers.microservices.citilinkparserservice.parser.properties.ComputerComponentProperties;
 import org.jsoup.nodes.Element;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
@@ -29,7 +29,7 @@ public class CitilinkElementParser<E extends ComputerComponent> {
                 | InvocationTargetException | NoSuchMethodException e) {
             throw new IllegalArgumentException(String.format(
                     "Exception during creating component with type = %s; " +
-                    "nested exception: %s", requiredType.getName(), e.getMessage()));
+                    "nested exception: %s", requiredType.getSimpleName(), e.getMessage()));
         }
         this.applicationContext = SpringApplicationContext.getApplicationContext();
         properties = new HashMap<>();
@@ -86,7 +86,7 @@ public class CitilinkElementParser<E extends ComputerComponent> {
 
     private void parseProperties() {
         saveProperties();
-        ComputerComponentPropertiesResolver.resolve(component, properties);
+        ComputerComponentProperties.doSetProperties(component, properties);
     }
 
     private void saveProperties() {
