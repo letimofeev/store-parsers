@@ -2,8 +2,8 @@ package com.storeparser.microservice.citilinkparserservice.parser;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.storeparser.microservice.citilinkparserservice.config.KafkaTopicNameFactory;
-import com.storeparser.microservice.citilinkparserservice.config.SpringApplicationContext;
+import com.storeparser.microservice.citilinkparserservice.parser.config.KafkaTopicNameFactory;
+import com.storeparser.microservice.citilinkparserservice.parser.config.SpringApplicationContext;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -18,20 +18,20 @@ import org.springframework.kafka.core.KafkaTemplate;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
-public class CitilinkPageParser<E extends ComputerComponent> implements Runnable {
+public class CitilinkPageParser<T extends ComputerComponent> implements Runnable {
 
     public static AtomicInteger counter = new AtomicInteger();
 
     private Document document;
     private Elements elements;
-    private final Class<E> requiredType;
+    private final Class<T> requiredType;
     private final String url;
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
     private final ApplicationContext applicationContext;
 
     @SuppressWarnings("unchecked")
-    public CitilinkPageParser(String url, Class<E> requiredType) {
+    public CitilinkPageParser(String url, Class<T> requiredType) {
         this.url = url;
         this.requiredType = requiredType;
         applicationContext = SpringApplicationContext.getApplicationContext();
@@ -51,7 +51,7 @@ public class CitilinkPageParser<E extends ComputerComponent> implements Runnable
             document = Jsoup.connect(url).get();
             elements = retrieveAllElements();
             for (Element element : elements) {
-                E component = retrieveParsedComponent(element);
+                T component = retrieveParsedComponent(element);
                 sendComponentJsonToKafka(component);
                 counter.incrementAndGet();
             }
@@ -67,15 +67,15 @@ public class CitilinkPageParser<E extends ComputerComponent> implements Runnable
                 Thread.currentThread().getName(), timeElapsed));
     }
 
-    private void sendComponentJsonToKafka(E component) throws JsonProcessingException {
+    private void sendComponentJsonToKafka(T component) throws JsonProcessingException {
         String componentJsonRepresentation = objectMapper.writeValueAsString(component);
         String topicName = applicationContext.getBean(KafkaTopicNameFactory.class)
                 .getTopicName(requiredType);
         kafkaTemplate.send(topicName, componentJsonRepresentation);
     }
 
-    private E retrieveParsedComponent(Element element) {
-        CitilinkElementParser<E> elementParser =
+    private T retrieveParsedComponent(Element element) {
+        CitilinkElementParser<T> elementParser =
                 new CitilinkElementParser<>(element, requiredType);
         return elementParser.getComponent();
     }

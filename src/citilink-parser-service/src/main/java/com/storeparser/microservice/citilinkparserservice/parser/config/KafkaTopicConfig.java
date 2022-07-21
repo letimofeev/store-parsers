@@ -1,4 +1,4 @@
-package com.storeparser.microservice.citilinkparserservice.config;
+package com.storeparser.microservice.citilinkparserservice.parser.config;
 
 import com.storeparser.microservice.citilinkparserservice.entity.GraphicsCard;
 import org.apache.kafka.clients.admin.NewTopic;

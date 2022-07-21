@@ -3,14 +3,14 @@ package com.storeparser.microservice.citilinkparserservice.service;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
 import com.storeparser.microservice.citilinkparserservice.parser.CitilinkPageParser;
 import com.storeparser.microservice.citilinkparserservice.parser.ComputerComponentParseException;
+import com.storeparser.microservice.citilinkparserservice.parser.config.ParserConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.lang.management.ManagementFactory;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -19,18 +19,19 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class ComputerComponentServiceImpl implements ComputerComponentService {
 
-    @Value("${citilink.parser.timeout}")
-    private int timeout;
+    @Autowired
+    private ParserConfig parserConfig;
 
     @Override
-    public <E extends ComputerComponent> void parseAll(String url, Class<E> requiredType) {
+    public <T extends ComputerComponent> void parseAll(String url, Class<T> requiredType) {
+        int timeout = parserConfig.getTimeout();
         try {
             int pageCount = retrievePageCount(url);
-            int threadNum = Math.min(ManagementFactory.getThreadMXBean().getThreadCount(), pageCount);
+            int threadNum = Math.min(parserConfig.getMaxThreadNumber(), pageCount);
             ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
             for (int i = 1; i <= pageCount; i++) {
                 String pageUrl = String.format("%s?p=%d", url, i);
-                CitilinkPageParser<E> pageParser = new CitilinkPageParser<>(pageUrl, requiredType);
+                CitilinkPageParser<T> pageParser = new CitilinkPageParser<>(pageUrl, requiredType);
                 executorService.submit(pageParser);
             }
             executorService.shutdown();

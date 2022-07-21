@@ -1,9 +1,9 @@
 package com.storeparser.microservice.citilinkparserservice.parser;
 
-import com.storeparser.microservice.citilinkparserservice.config.CitilinkUrls;
+import com.storeparser.microservice.citilinkparserservice.parser.config.CitilinkUrls;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
 import com.storeparser.microservice.citilinkparserservice.parser.properties.ComputerComponentProperties;
-import com.storeparser.microservice.citilinkparserservice.config.SpringApplicationContext;
+import com.storeparser.microservice.citilinkparserservice.parser.config.SpringApplicationContext;
 import org.jsoup.nodes.Element;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;
@@ -12,16 +12,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CitilinkElementParser<E extends ComputerComponent> {
+public class CitilinkElementParser<T extends ComputerComponent> {
 
     protected Element element;
-    protected E component;
+    protected T component;
     protected Map<String, String> properties;
 
     private Element titleElement;
     private final ApplicationContext applicationContext;
 
-    public CitilinkElementParser(Element element, @NonNull Class<E> requiredType) {
+    public CitilinkElementParser(Element element, @NonNull Class<T> requiredType) {
         this.element = element;
         try {
             this.component = requiredType.getConstructor().newInstance();
@@ -36,7 +36,7 @@ public class CitilinkElementParser<E extends ComputerComponent> {
         parseAll();
     }
 
-    public E getComponent() {
+    public T getComponent() {
         return component;
     }
 
@@ -64,7 +64,7 @@ public class CitilinkElementParser<E extends ComputerComponent> {
     }
 
     private void parseUrl() {
-        String urlPrefix = applicationContext.getBean(CitilinkUrls.class).getHomeUrl();
+        String urlPrefix = applicationContext.getBean(CitilinkUrls.class).getHome();
         String url = urlPrefix + titleElement.attr("href");
         component.setUrl(url);
     }

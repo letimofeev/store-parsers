@@ -1,4 +1,4 @@
-package com.storeparser.microservice.citilinkparserservice.config;
+package com.storeparser.microservice.citilinkparserservice.parser.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

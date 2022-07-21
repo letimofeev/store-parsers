@@ -4,5 +4,5 @@ import com.storeparser.microservice.citilinkparserservice.entity.ComputerCompone
 
 public interface ComputerComponentService {
 
-    <E extends ComputerComponent> void parseAll(String url, Class<E> requiredType);
+    <T extends ComputerComponent> void parseAll(String url, Class<T> requiredType);
 }

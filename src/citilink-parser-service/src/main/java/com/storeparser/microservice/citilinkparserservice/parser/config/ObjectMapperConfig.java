@@ -1,11 +1,9 @@
-package com.storeparser.microservice.citilinkparserservice.config;
+package com.storeparser.microservice.citilinkparserservice.parser.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class WebParserConfig {
+public class ObjectMapperConfig {
 
     @Bean
     public ObjectMapper objectMapper() {
