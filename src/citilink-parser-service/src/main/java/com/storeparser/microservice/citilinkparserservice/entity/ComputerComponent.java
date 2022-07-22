@@ -7,8 +7,8 @@ public abstract class ComputerComponent {
     protected String url;
     protected String imageUrl;
     protected int price;
-    protected String storeName;
-    protected String storeNameLower;
+    protected String storeDisplayName;
+    protected String storeShortName;
     protected boolean isStock;
 
     public String getDisplayTitle() {
@@ -51,20 +51,20 @@ public abstract class ComputerComponent {
         this.price = price;
     }
 
-    public String getStoreName() {
-        return storeName;
+    public String getStoreDisplayName() {
+        return storeDisplayName;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
+    public void setStoreDisplayName(String storeDisplayName) {
+        this.storeDisplayName = storeDisplayName;
     }
 
-    public String getStoreNameLower() {
-        return storeNameLower;
+    public String getStoreShortName() {
+        return storeShortName;
     }
 
-    public void setStoreNameLower(String storeNameLower) {
-        this.storeNameLower = storeNameLower;
+    public void setStoreShortName(String storeShortName) {
+        this.storeShortName = storeShortName;
     }
 
     public boolean isStock() {

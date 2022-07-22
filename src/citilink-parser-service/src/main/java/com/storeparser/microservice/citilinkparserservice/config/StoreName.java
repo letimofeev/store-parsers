@@ -7,22 +7,22 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "citilink.name")
 public class StoreName {
 
-    private String display;
-    private String lower;
+    private String displayName;
+    private String shortName;
 
-    public String getDisplay() {
-        return display;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setDisplay(String display) {
-        this.display = display;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getLower() {
-        return lower;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setLower(String lower) {
-        this.lower = lower;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 }

@@ -45,10 +45,10 @@ public class CitilinkElementParser<T extends ComputerComponent> {
 
     private void doSetStoreNames() {
         StoreName storeName = applicationContext.getBean(StoreName.class);
-        String displayName = storeName.getDisplay();
-        String nameLower = storeName.getLower();
-        component.setStoreName(displayName);
-        component.setStoreNameLower(nameLower);
+        String displayName = storeName.getDisplayName();
+        String shortName = storeName.getShortName();
+        component.setStoreDisplayName(displayName);
+        component.setStoreShortName(shortName);
     }
 
     private void parseAll() {
