@@ -83,7 +83,7 @@ public class CitilinkElementParser<T extends ComputerComponent> {
     private void parseDisplayTitle() {
         String displayTitle = titleElement.text();
         component.setDisplayTitle(displayTitle);
-        component.setDisplayTitleLower(displayTitle.toLowerCase(Locale.ROOT));
+        component.setTitleFormatted(displayTitle.toLowerCase(Locale.ROOT));
     }
 
     private void parseImageUrl() {

@@ -3,7 +3,7 @@ package com.storeparser.microservice.citilinkparserservice.entity;
 public abstract class ComputerComponent {
 
     protected String displayTitle;
-    protected String displayTitleLower;
+    protected String titleFormatted;
     protected String url;
     protected String imageUrl;
     protected int price;
@@ -19,12 +19,12 @@ public abstract class ComputerComponent {
         this.displayTitle = displayTitle;
     }
 
-    public String getDisplayTitleLower() {
-        return displayTitleLower;
+    public String getTitleFormatted() {
+        return titleFormatted;
     }
 
-    public void setDisplayTitleLower(String displayTitleLower) {
-        this.displayTitleLower = displayTitleLower;
+    public void setTitleFormatted(String titleFormatted) {
+        this.titleFormatted = titleFormatted;
     }
 
     public String getUrl() {

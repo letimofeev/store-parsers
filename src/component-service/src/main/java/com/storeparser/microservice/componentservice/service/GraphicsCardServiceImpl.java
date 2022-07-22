@@ -15,18 +15,22 @@ public class GraphicsCardServiceImpl implements GraphicsCardService {
 
     @Override
     public GraphicsCard save(GraphicsCard graphicsCard) {
-        String displayTitleLower = graphicsCard.getDisplayTitleLower();
+        String titleFormatted = graphicsCard.getTitleFormatted();
         String videoChipset = graphicsCard.getVideoChipset();
         Optional<GraphicsCard> cardOptional =
-                cardRepository.findByDisplayTitleLowerAndVideoChipset(displayTitleLower,
-                        videoChipset);
+                cardRepository.findByTitleFormattedAndVideoChipset(titleFormatted, videoChipset);
         if (cardOptional.isEmpty()) {
             cardRepository.save(graphicsCard);
         } else {
-            int cardId = cardOptional.get().getId();
-            graphicsCard.setId(cardId);
+            GraphicsCard graphicsCardFromBase = cardOptional.get();
+            graphicsCard.setId(graphicsCardFromBase.getId());
+            NullValuesResolver<GraphicsCard> resolver
+                    = new NullValuesResolver<>(graphicsCardFromBase, GraphicsCard.class);
+            resolver.merge(graphicsCard);
+            if (resolver.isModified()) {
+                cardRepository.save(graphicsCardFromBase);
+            }
         }
         return graphicsCard;
     }
-
 }

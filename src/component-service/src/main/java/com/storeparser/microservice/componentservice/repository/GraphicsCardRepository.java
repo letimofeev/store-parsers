@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface GraphicsCardRepository extends JpaRepository<GraphicsCard, Integer> {
 
-    Optional<GraphicsCard> findByDisplayTitleLowerAndVideoChipset(String displayTitleLower, String videoChipset);
+    Optional<GraphicsCard> findByTitleFormattedAndVideoChipset(String displayTitleLower, String videoChipset);
 }

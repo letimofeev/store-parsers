@@ -54,9 +54,6 @@ public class CitilinkPageParser<T extends ComputerComponent> implements Runnable
                 T component = retrieveParsedComponent(element);
                 sendComponentJsonToKafka(component);
                 counter.incrementAndGet();
-                if (counter.get() > 0) { //TODO: убрать
-                    return;
-                }
             }
         } catch (Exception e) {
             String message = String.format(

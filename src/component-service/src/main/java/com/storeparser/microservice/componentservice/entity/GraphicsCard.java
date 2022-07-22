@@ -12,7 +12,7 @@ public class GraphicsCard {
     private int id;
 
     private String displayTitle;
-    private String displayTitleLower;
+    private String titleFormatted;
     private String url;
     private String imageUrl;
     private String connector;
@@ -63,12 +63,12 @@ public class GraphicsCard {
         this.displayTitle = displayTitle;
     }
 
-    public String getDisplayTitleLower() {
-        return displayTitleLower;
+    public String getTitleFormatted() {
+        return titleFormatted;
     }
 
-    public void setDisplayTitleLower(String displayTitleLower) {
-        this.displayTitleLower = displayTitleLower;
+    public void setTitleFormatted(String titleFormatted) {
+        this.titleFormatted = titleFormatted;
     }
 
     public String getUrl() {
@@ -213,7 +213,7 @@ public class GraphicsCard {
                 "id=" + id +
                 ", stock=" + stock +
                 ", displayTitle='" + displayTitle + '\'' +
-                ", displayTitleLower='" + displayTitleLower + '\'' +
+                ", titleFormatted='" + titleFormatted + '\'' +
                 ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", connector='" + connector + '\'' +
