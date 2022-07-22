@@ -1,6 +1,6 @@
 package com.storeparser.microservice.citilinkparserservice.controller;
 
-import com.storeparser.microservice.citilinkparserservice.parser.config.CitilinkUrls;
+import com.storeparser.microservice.citilinkparserservice.config.CitilinkUrls;
 import com.storeparser.microservice.citilinkparserservice.entity.GraphicsCard;
 import com.storeparser.microservice.citilinkparserservice.service.ComputerComponentService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.storeparser.microservice.citilinkparserservice.parser.config;
+package com.storeparser.microservice.citilinkparserservice.config;
 
 import com.storeparser.microservice.citilinkparserservice.entity.GraphicsCard;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;

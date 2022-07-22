@@ -1,10 +1,10 @@
 package com.storeparser.microservice.citilinkparserservice.parser;
 
-import com.storeparser.microservice.citilinkparserservice.parser.config.CitilinkUrls;
+import com.storeparser.microservice.citilinkparserservice.config.CitilinkUrls;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
-import com.storeparser.microservice.citilinkparserservice.parser.config.StoreName;
+import com.storeparser.microservice.citilinkparserservice.config.StoreName;
 import com.storeparser.microservice.citilinkparserservice.parser.properties.ComputerComponentProperties;
-import com.storeparser.microservice.citilinkparserservice.parser.config.SpringApplicationContext;
+import com.storeparser.microservice.citilinkparserservice.config.SpringApplicationContext;
 import org.jsoup.nodes.Element;
 import org.springframework.context.ApplicationContext;
 import org.springframework.lang.NonNull;

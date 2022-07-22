@@ -1,4 +1,4 @@
-package com.storeparser.microservice.citilinkparserservice.parser.config;
+package com.storeparser.microservice.citilinkparserservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
