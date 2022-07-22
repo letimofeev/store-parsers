@@ -2,6 +2,7 @@ package com.storeparser.microservice.citilinkparserservice.parser;
 
 import com.storeparser.microservice.citilinkparserservice.parser.config.CitilinkUrls;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
+import com.storeparser.microservice.citilinkparserservice.parser.config.StoreName;
 import com.storeparser.microservice.citilinkparserservice.parser.properties.ComputerComponentProperties;
 import com.storeparser.microservice.citilinkparserservice.parser.config.SpringApplicationContext;
 import org.jsoup.nodes.Element;
@@ -10,6 +11,7 @@ import org.springframework.lang.NonNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class CitilinkElementParser<T extends ComputerComponent> {
@@ -33,11 +35,20 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         }
         this.applicationContext = SpringApplicationContext.getApplicationContext();
         properties = new HashMap<>();
+        doSetStoreNames();
         parseAll();
     }
 
     public T getComponent() {
         return component;
+    }
+
+    private void doSetStoreNames() {
+        StoreName storeName = applicationContext.getBean(StoreName.class);
+        String displayName = storeName.getDisplay();
+        String nameLower = storeName.getLower();
+        component.setStoreName(displayName);
+        component.setStoreNameLower(nameLower);
     }
 
     private void parseAll() {
@@ -72,6 +83,7 @@ public class CitilinkElementParser<T extends ComputerComponent> {
     private void parseDisplayTitle() {
         String displayTitle = titleElement.text();
         component.setDisplayTitle(displayTitle);
+        component.setDisplayTitleLower(displayTitle.toLowerCase(Locale.ROOT));
     }
 
     private void parseImageUrl() {

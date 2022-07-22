@@ -3,7 +3,7 @@ package com.storeparser.microservice.citilinkparserservice.service;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
 import com.storeparser.microservice.citilinkparserservice.parser.CitilinkPageParser;
 import com.storeparser.microservice.citilinkparserservice.parser.ComputerComponentParseException;
-import com.storeparser.microservice.citilinkparserservice.parser.config.ParserConfig;
+import com.storeparser.microservice.citilinkparserservice.parser.config.ParserProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,14 +20,14 @@ import java.util.concurrent.TimeUnit;
 public class ComputerComponentServiceImpl implements ComputerComponentService {
 
     @Autowired
-    private ParserConfig parserConfig;
+    private ParserProperties parserProperties;
 
     @Override
     public <T extends ComputerComponent> void parseAll(String url, Class<T> requiredType) {
-        int timeout = parserConfig.getTimeout();
+        int timeout = parserProperties.getTimeout();
         try {
             int pageCount = retrievePageCount(url);
-            int threadNum = Math.min(parserConfig.getMaxThreadNumber(), pageCount);
+            int threadNum = Math.min(parserProperties.getMaxThreadNumber(), pageCount);
             ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
             for (int i = 1; i <= pageCount; i++) {
                 String pageUrl = String.format("%s?p=%d", url, i);

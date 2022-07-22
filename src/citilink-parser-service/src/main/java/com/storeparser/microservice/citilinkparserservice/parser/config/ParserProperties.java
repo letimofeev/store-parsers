@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "citilink.parser")
-public class ParserConfig {
+public class ParserProperties {
 
     private int timeout;
     private int maxThreadNumber;
