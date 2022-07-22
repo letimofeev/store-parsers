@@ -2,7 +2,7 @@ package com.storeparser.microservice.citilinkparserservice.parser;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.storeparser.microservice.citilinkparserservice.config.KafkaTopicNameFactory;
+import com.storeparser.microservice.citilinkparserservice.broker.KafkaTopicNameFactory;
 import com.storeparser.microservice.citilinkparserservice.config.SpringApplicationContext;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
 import lombok.extern.slf4j.Slf4j;

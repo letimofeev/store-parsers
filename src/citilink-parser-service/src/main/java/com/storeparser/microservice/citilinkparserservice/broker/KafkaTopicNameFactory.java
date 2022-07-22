@@ -1,5 +1,6 @@
-package com.storeparser.microservice.citilinkparserservice.config;
+package com.storeparser.microservice.citilinkparserservice.broker;
 
+import com.storeparser.microservice.citilinkparserservice.config.KafkaTopicNames;
 import com.storeparser.microservice.citilinkparserservice.entity.GraphicsCard;
 import com.storeparser.microservice.citilinkparserservice.entity.ComputerComponent;
 import org.springframework.beans.factory.annotation.Autowired;
