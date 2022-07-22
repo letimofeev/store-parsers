@@ -9,7 +9,7 @@ public abstract class ComputerComponent {
     protected int price;
     protected String storeDisplayName;
     protected String storeShortName;
-    protected boolean isStock;
+    protected boolean stock;
 
     public String getDisplayTitle() {
         return displayTitle;
@@ -67,11 +67,11 @@ public abstract class ComputerComponent {
         this.storeShortName = storeShortName;
     }
 
-    public boolean isStock() {
-        return isStock;
+    public boolean getStock() {
+        return stock;
     }
 
     public void setStock(boolean stock) {
-        isStock = stock;
+        this.stock = stock;
     }
 }

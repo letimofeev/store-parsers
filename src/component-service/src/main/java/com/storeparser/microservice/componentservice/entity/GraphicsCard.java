@@ -1,7 +1,7 @@
 package com.storeparser.microservice.componentservice.entity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "graphics_card")
@@ -11,9 +11,6 @@ public class GraphicsCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int storeId;
-    private int price;
-    private boolean isStock;
     private String displayTitle;
     private String displayTitleLower;
     private String url;
@@ -21,22 +18,31 @@ public class GraphicsCard {
     private String connector;
     private String busWidth;
     private String videoChipset;
-
-    @Column(name = "gpu_frequency")
-    private String GPUFrequency;
-
     private String videoMemoryFrequency;
     private String videoMemorySize;
     private String videoMemoryType;
     private String technologySupport;
     private String additionalPowerConnectors;
     private String recommendedPowerSupply;
-    private LocalDateTime timestamp;
+
+    @Column(name = "gpu_frequency")
+    private String GPUFrequency;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id")
+    private List<GraphicsCardPrice> prices;
 
     @Transient
     private String storeDisplayName;
+
     @Transient
     private String storeShortName;
+
+    @Transient
+    private int price;
+
+    @Transient
+    private boolean stock;
 
     public GraphicsCard() {
     }
@@ -47,30 +53,6 @@ public class GraphicsCard {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public boolean isStock() {
-        return isStock;
-    }
-
-    public void setStock(boolean stock) {
-        isStock = stock;
     }
 
     public String getDisplayTitle() {
@@ -129,14 +111,6 @@ public class GraphicsCard {
         this.videoChipset = videoChipset;
     }
 
-    public String getGPUFrequency() {
-        return GPUFrequency;
-    }
-
-    public void setGPUFrequency(String GPUFrequency) {
-        this.GPUFrequency = GPUFrequency;
-    }
-
     public String getVideoMemoryFrequency() {
         return videoMemoryFrequency;
     }
@@ -185,12 +159,20 @@ public class GraphicsCard {
         this.recommendedPowerSupply = recommendedPowerSupply;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public String getGPUFrequency() {
+        return GPUFrequency;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setGPUFrequency(String GPUFrequency) {
+        this.GPUFrequency = GPUFrequency;
+    }
+
+    public List<GraphicsCardPrice> getPrices() {
+        return prices;
+    }
+
+    public void setPrices(List<GraphicsCardPrice> prices) {
+        this.prices = prices;
     }
 
     public String getStoreDisplayName() {
@@ -209,30 +191,44 @@ public class GraphicsCard {
         this.storeShortName = storeShortName;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean getStock() {
+        return stock;
+    }
+
+    public void setStock(boolean stock) {
+        this.stock = stock;
+    }
+
     @Override
     public String toString() {
         return "GraphicsCard{" +
                 "id=" + id +
-                ", storeId=" + storeId +
+                ", stock=" + stock +
                 ", displayTitle='" + displayTitle + '\'' +
                 ", displayTitleLower='" + displayTitleLower + '\'' +
                 ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", price=" + price +
-                ", storeDisplayName='" + storeDisplayName + '\'' +
-                ", storeShortName='" + storeShortName + '\'' +
-                ", isStock=" + isStock +
                 ", connector='" + connector + '\'' +
                 ", busWidth='" + busWidth + '\'' +
                 ", videoChipset='" + videoChipset + '\'' +
-                ", GPUFrequency='" + GPUFrequency + '\'' +
                 ", videoMemoryFrequency='" + videoMemoryFrequency + '\'' +
                 ", videoMemorySize='" + videoMemorySize + '\'' +
                 ", videoMemoryType='" + videoMemoryType + '\'' +
                 ", technologySupport='" + technologySupport + '\'' +
                 ", additionalPowerConnectors='" + additionalPowerConnectors + '\'' +
                 ", recommendedPowerSupply='" + recommendedPowerSupply + '\'' +
-                ", timestamp=" + timestamp +
+                ", GPUFrequency='" + GPUFrequency + '\'' +
+                ", storeDisplayName='" + storeDisplayName + '\'' +
+                ", storeShortName='" + storeShortName + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
