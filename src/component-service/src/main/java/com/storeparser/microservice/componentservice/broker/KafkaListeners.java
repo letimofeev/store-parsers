@@ -2,8 +2,10 @@ package com.storeparser.microservice.componentservice.broker;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.storeparser.microservice.componentservice.entity.Brand;
 import com.storeparser.microservice.componentservice.entity.GraphicsCard;
 import com.storeparser.microservice.componentservice.entity.Store;
+import com.storeparser.microservice.componentservice.service.BrandService;
 import com.storeparser.microservice.componentservice.service.GraphicsCardPriceService;
 import com.storeparser.microservice.componentservice.service.GraphicsCardService;
 import com.storeparser.microservice.componentservice.service.StoreService;
@@ -22,6 +24,9 @@ public class KafkaListeners {
     private StoreService storeService;
 
     @Autowired
+    private BrandService brandService;
+
+    @Autowired
     private GraphicsCardPriceService priceService;
 
     @Autowired
@@ -32,10 +37,12 @@ public class KafkaListeners {
         GraphicsCard graphicsCard = objectMapper.readValue(data, GraphicsCard.class);
 
         System.out.println("Received: " + data);
-        System.out.println("Object: " + graphicsCard);
 
         Store store = storeService.saveFromGraphicsCard(graphicsCard);
-        graphicsCard = cardService.save(graphicsCard);
+        Brand brand = brandService.saveFromGraphicsCard(graphicsCard);
+        graphicsCard.setBrandId(brand.getId());
+        cardService.save(graphicsCard);
+        System.out.println("Object: " + graphicsCard);
         priceService.saveFromStoreAndGraphicsCard(store, graphicsCard);
     }
 }

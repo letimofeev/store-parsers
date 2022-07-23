@@ -18,11 +18,12 @@ public class GraphicsCardPriceServiceImpl implements GraphicsCardPriceService {
     @Override
     public GraphicsCardPrice saveFromStoreAndGraphicsCard(Store store, GraphicsCard graphicsCard) {
         GraphicsCardPrice cardPrice = new GraphicsCardPrice();
-        cardPrice.setPrice(graphicsCard.getPrice());
         cardPrice.setStoreId(store.getId());
-        cardPrice.setStock(graphicsCard.getStock());
-        cardPrice.setTimestamp(LocalDateTime.now());
         cardPrice.setGraphicsCardId(graphicsCard.getId());
+        cardPrice.setPrice(graphicsCard.getPrice());
+        cardPrice.setStock(graphicsCard.getStock());
+        cardPrice.setUrl(graphicsCard.getUrl());
+        cardPrice.setTimestamp(LocalDateTime.now());
         priceRepository.save(cardPrice);
         return cardPrice;
     }

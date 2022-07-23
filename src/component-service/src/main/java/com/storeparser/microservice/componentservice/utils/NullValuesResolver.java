@@ -1,4 +1,4 @@
-package com.storeparser.microservice.componentservice.service;
+package com.storeparser.microservice.componentservice.utils;
 
 import java.lang.reflect.Field;
 
@@ -13,15 +13,25 @@ public class NullValuesResolver<T> {
         this.element = element;
     }
 
+    public boolean isModified() {
+        return isModified;
+    }
+
+    public T getElement() {
+        return element;
+    }
+
     public void merge(T otherElement) {
         for (Field field : requiredType.getDeclaredFields()) {
             try {
                 field.setAccessible(true);
-                Object firstElementField = field.get(element);
-                Object secondElementField = field.get(otherElement);
-                if (firstElementField == null && secondElementField != null) {
+                if (field.get(element) == null && field.get(otherElement) != null) {
                     isModified = true;
-                    field.set(element, secondElementField);
+                    field.set(element, field.get(otherElement));
+                } else if (field.getType() == int.class &&
+                        field.getInt(element) == 0 && field.getInt(otherElement) != 0) {
+                    isModified = true;
+                    field.set(element, field.getInt(otherElement));
                 }
             } catch (IllegalAccessException e) {
                 throw new NullValuesResolverException(String.format(
@@ -29,13 +39,5 @@ public class NullValuesResolver<T> {
                         requiredType, e.getCause()), e);
             }
         }
-    }
-
-    public boolean isModified() {
-        return isModified;
-    }
-
-    public T getElement() {
-        return element;
     }
 }

@@ -3,8 +3,8 @@ package com.storeparser.microservice.componentservice.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "store")
-public class Store {
+@Table(name = "brand")
+public class Brand {
 
     @lombok.Setter
     @lombok.Getter
@@ -18,8 +18,8 @@ public class Store {
 
     @lombok.Setter
     @lombok.Getter
-    private String shortName;
+    private String displayNameLower;
 
-    public Store() {
+    public Brand() {
     }
 }

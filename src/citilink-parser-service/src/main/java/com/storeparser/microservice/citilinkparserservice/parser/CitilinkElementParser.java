@@ -13,6 +13,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CitilinkElementParser<T extends ComputerComponent> {
 
@@ -53,8 +55,10 @@ public class CitilinkElementParser<T extends ComputerComponent> {
 
     private void parseAll() {
         parsePrice();
+        parseStock();
         parseTitleElement();
         parseImageUrl();
+        parseBrand();
         parseProperties();
     }
 
@@ -64,10 +68,17 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         component.setPrice(Integer.parseInt(price));
     }
 
+    private void parseStock() {
+        boolean isStock = element.selectFirst("div.ProductCardHorizontal__not-available-block") == null;
+        component.setStock(isStock);
+    }
+
     private void parseTitleElement() {
         saveTitleElement();
         parseUrl();
         parseDisplayTitle();
+        parseSerialIdentifier();
+        parseModel();
     }
 
     private void saveTitleElement() {
@@ -83,7 +94,25 @@ public class CitilinkElementParser<T extends ComputerComponent> {
     private void parseDisplayTitle() {
         String displayTitle = titleElement.text();
         component.setDisplayTitle(displayTitle);
-        component.setTitleFormatted(displayTitle.toLowerCase(Locale.ROOT));
+    }
+
+    private void parseSerialIdentifier() {
+        String titleAttr = titleElement.attr("title");
+        String idRegex = "\\[(.*?)\\]";
+        Pattern pattern = Pattern.compile(idRegex);
+        Matcher matcher = pattern.matcher(titleAttr);
+        if (matcher.find()) {
+            String serialNumber = matcher.group(1);
+            component.setSerialIdentifier(serialNumber);
+        }
+    }
+
+    private void parseModel() {
+        String title = component.getDisplayTitle();
+        String model = title.split(", ")[1]
+                .replace(" bulk", "")
+                .toLowerCase(Locale.ROOT);
+        component.setModel(model);
     }
 
     private void parseImageUrl() {
@@ -94,6 +123,12 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         String imageUrl = imageElement.select("img")
                 .attr("src");
         component.setImageUrl(imageUrl);
+    }
+
+    private void parseBrand() {
+        String title = component.getDisplayTitle();
+        String brand = title.split(" ")[1];
+        component.setBrand(brand);
     }
 
     private void parseProperties() {

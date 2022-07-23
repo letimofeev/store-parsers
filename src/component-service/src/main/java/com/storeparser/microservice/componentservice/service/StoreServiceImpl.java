@@ -15,11 +15,6 @@ public class StoreServiceImpl implements StoreService {
     private StoreRepository storeRepository;
 
     @Override
-    public Store save(Store store) {
-        return storeRepository.save(store);
-    }
-
-    @Override
     public Store saveFromGraphicsCard(GraphicsCard graphicsCard) {
         String storeShortName = graphicsCard.getStoreShortName();
         Optional<Store> storeOptional = storeRepository.findByShortName(storeShortName);

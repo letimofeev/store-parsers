@@ -5,7 +5,5 @@ import com.storeparser.microservice.componentservice.entity.Store;
 
 public interface StoreService {
 
-    Store save(Store store);
-
     Store saveFromGraphicsCard(GraphicsCard graphicsCard);
 }

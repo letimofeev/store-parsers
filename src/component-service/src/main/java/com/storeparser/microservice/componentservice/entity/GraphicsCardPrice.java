@@ -27,6 +27,10 @@ public class GraphicsCardPrice {
 
     @lombok.Setter
     @lombok.Getter
+    private String url;
+
+    @lombok.Setter
+    @lombok.Getter
     @Column(name = "is_stock")
     private boolean stock;
 

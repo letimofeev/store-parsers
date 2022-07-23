@@ -11,9 +11,10 @@ public class GraphicsCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int brandId;
+    private String serialIdentifier;
     private String displayTitle;
-    private String titleFormatted;
-    private String url;
+    private String model;
     private String imageUrl;
     private String connector;
     private String busWidth;
@@ -39,7 +40,13 @@ public class GraphicsCard {
     private String storeShortName;
 
     @Transient
+    private String brand;
+
+    @Transient
     private int price;
+
+    @Transient
+    private String url;
 
     @Transient
     private boolean stock;
@@ -55,6 +62,22 @@ public class GraphicsCard {
         this.id = id;
     }
 
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getSerialIdentifier() {
+        return serialIdentifier;
+    }
+
+    public void setSerialIdentifier(String serialIdentifier) {
+        this.serialIdentifier = serialIdentifier;
+    }
+
     public String getDisplayTitle() {
         return displayTitle;
     }
@@ -63,12 +86,20 @@ public class GraphicsCard {
         this.displayTitle = displayTitle;
     }
 
-    public String getTitleFormatted() {
-        return titleFormatted;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setTitleFormatted(String titleFormatted) {
-        this.titleFormatted = titleFormatted;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getUrl() {
@@ -211,10 +242,10 @@ public class GraphicsCard {
     public String toString() {
         return "GraphicsCard{" +
                 "id=" + id +
-                ", stock=" + stock +
+                ", brandId=" + brandId +
+                ", serialIdentifier='" + serialIdentifier + '\'' +
                 ", displayTitle='" + displayTitle + '\'' +
-                ", titleFormatted='" + titleFormatted + '\'' +
-                ", url='" + url + '\'' +
+                ", model='" + model + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", connector='" + connector + '\'' +
                 ", busWidth='" + busWidth + '\'' +
@@ -226,9 +257,13 @@ public class GraphicsCard {
                 ", additionalPowerConnectors='" + additionalPowerConnectors + '\'' +
                 ", recommendedPowerSupply='" + recommendedPowerSupply + '\'' +
                 ", GPUFrequency='" + GPUFrequency + '\'' +
+                ", prices=" + prices +
                 ", storeDisplayName='" + storeDisplayName + '\'' +
                 ", storeShortName='" + storeShortName + '\'' +
+                ", brand='" + brand + '\'' +
                 ", price=" + price +
+                ", url='" + url + '\'' +
+                ", stock=" + stock +
                 '}';
     }
 }

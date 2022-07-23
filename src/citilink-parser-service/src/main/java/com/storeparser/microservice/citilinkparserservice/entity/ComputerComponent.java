@@ -2,14 +2,24 @@ package com.storeparser.microservice.citilinkparserservice.entity;
 
 public abstract class ComputerComponent {
 
+    protected String serialIdentifier;
     protected String displayTitle;
-    protected String titleFormatted;
+    protected String brand;
+    protected String model;
     protected String url;
     protected String imageUrl;
     protected int price;
     protected String storeDisplayName;
     protected String storeShortName;
     protected boolean stock;
+
+    public String getSerialIdentifier() {
+        return serialIdentifier;
+    }
+
+    public void setSerialIdentifier(String serialIdentifier) {
+        this.serialIdentifier = serialIdentifier;
+    }
 
     public String getDisplayTitle() {
         return displayTitle;
@@ -19,12 +29,20 @@ public abstract class ComputerComponent {
         this.displayTitle = displayTitle;
     }
 
-    public String getTitleFormatted() {
-        return titleFormatted;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setTitleFormatted(String titleFormatted) {
-        this.titleFormatted = titleFormatted;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getUrl() {

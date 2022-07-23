@@ -1,4 +1,4 @@
-package com.storeparser.microservice.componentservice.service;
+package com.storeparser.microservice.componentservice.utils;
 
 public class NullValuesResolverException extends RuntimeException {
 

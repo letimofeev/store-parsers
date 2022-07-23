@@ -56,10 +56,9 @@ public class CitilinkPageParser<T extends ComputerComponent> implements Runnable
                 counter.incrementAndGet();
             }
         } catch (Exception e) {
-            String message = String.format(
+            throw new ComputerComponentParseException(String.format(
                     "Exception during parsing page (url = %s); nested exception: %s",
-                    url, e.getMessage());
-            throw new ComputerComponentParseException(message, e);
+                    url, e.getMessage()), e);
         }
         long timeElapsed = System.currentTimeMillis() - startTimeMillis;
         log.debug(String.format("[ParserLogging] End of method CitilinkPageParser.run," +

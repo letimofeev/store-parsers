@@ -9,5 +9,7 @@ import java.util.Optional;
 @Repository
 public interface GraphicsCardRepository extends JpaRepository<GraphicsCard, Integer> {
 
-    Optional<GraphicsCard> findByTitleFormattedAndVideoChipset(String displayTitleLower, String videoChipset);
+    Optional<GraphicsCard> findBySerialIdentifier(String serialIdentifier);
+
+    Optional<GraphicsCard> findByModel(String model);
 }
