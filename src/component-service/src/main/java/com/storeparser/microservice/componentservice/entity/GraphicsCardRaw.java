@@ -1,23 +1,14 @@
 package com.storeparser.microservice.componentservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table(name = "graphics_card")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class GraphicsCard {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class GraphicsCardRaw {
 
     private String serialIdentifier;
     private String displayTitle;
-    private String model;
+    private String modelName;
+    private String url;
     private String imageUrl;
+    private String storeDisplayName;
+    private String brandName;
     private String connector;
     private String busWidth;
     private String videoChipset;
@@ -27,27 +18,11 @@ public class GraphicsCard {
     private String technologySupport;
     private String additionalPowerConnectors;
     private String recommendedPowerSupply;
-
-    @Column(name = "gpu_frequency")
     private String GPUFrequency;
+    private int price;
+    private boolean stock;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "graphics_card_id", referencedColumnName = "id")
-    private List<GraphicsCardPrice> prices;
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
-
-    public GraphicsCard() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public GraphicsCardRaw() {
     }
 
     public String getSerialIdentifier() {
@@ -66,12 +41,20 @@ public class GraphicsCard {
         this.displayTitle = displayTitle;
     }
 
-    public String getModel() {
-        return model;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getImageUrl() {
@@ -80,6 +63,22 @@ public class GraphicsCard {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getStoreDisplayName() {
+        return storeDisplayName;
+    }
+
+    public void setStoreDisplayName(String storeDisplayName) {
+        this.storeDisplayName = storeDisplayName;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public String getConnector() {
@@ -162,30 +161,32 @@ public class GraphicsCard {
         this.GPUFrequency = GPUFrequency;
     }
 
-    public List<GraphicsCardPrice> getPrices() {
-        return prices;
+    public int getPrice() {
+        return price;
     }
 
-    public void setPrices(List<GraphicsCardPrice> prices) {
-        this.prices = prices;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public boolean getStock() {
+        return stock;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setStock(boolean stock) {
+        this.stock = stock;
     }
 
     @Override
     public String toString() {
-        return "GraphicsCard{" +
-                "id=" + id +
-                ", serialIdentifier='" + serialIdentifier + '\'' +
+        return "GraphicsCardRaw{" +
+                "serialIdentifier='" + serialIdentifier + '\'' +
                 ", displayTitle='" + displayTitle + '\'' +
-                ", model='" + model + '\'' +
+                ", modelName='" + modelName + '\'' +
+                ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", storeDisplayName='" + storeDisplayName + '\'' +
+                ", brandName='" + brandName + '\'' +
                 ", connector='" + connector + '\'' +
                 ", busWidth='" + busWidth + '\'' +
                 ", videoChipset='" + videoChipset + '\'' +
@@ -196,8 +197,8 @@ public class GraphicsCard {
                 ", additionalPowerConnectors='" + additionalPowerConnectors + '\'' +
                 ", recommendedPowerSupply='" + recommendedPowerSupply + '\'' +
                 ", GPUFrequency='" + GPUFrequency + '\'' +
-                ", prices=" + prices +
-                ", brand=" + brand +
+                ", price=" + price +
+                ", stock=" + stock +
                 '}';
     }
 }

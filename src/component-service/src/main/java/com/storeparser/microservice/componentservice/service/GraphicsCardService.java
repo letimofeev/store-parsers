@@ -4,5 +4,7 @@ import com.storeparser.microservice.componentservice.entity.GraphicsCard;
 
 public interface GraphicsCardService {
 
-    void save(GraphicsCard graphicsCard);
+    GraphicsCard save(GraphicsCard graphicsCard);
+
+    GraphicsCard findById(int id);
 }

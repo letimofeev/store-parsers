@@ -1,6 +1,7 @@
 package com.storeparser.microservice.componentservice.entity;
 
 import javax.persistence.*;
+import java.util.Locale;
 
 @Entity
 @Table(name = "brand")
@@ -21,5 +22,10 @@ public class Brand {
     private String displayNameLower;
 
     public Brand() {
+    }
+
+    public Brand(String displayName) {
+        this.displayName = displayName;
+        displayNameLower = displayName.toLowerCase(Locale.ROOT);
     }
 }

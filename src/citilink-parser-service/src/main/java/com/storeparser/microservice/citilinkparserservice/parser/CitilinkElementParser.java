@@ -37,7 +37,7 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         }
         this.applicationContext = SpringApplicationContext.getApplicationContext();
         properties = new HashMap<>();
-        doSetStoreNames();
+        doSetStoreName();
         parseAll();
     }
 
@@ -45,12 +45,10 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         return component;
     }
 
-    private void doSetStoreNames() {
+    private void doSetStoreName() {
         StoreName storeName = applicationContext.getBean(StoreName.class);
         String displayName = storeName.getDisplayName();
-        String shortName = storeName.getShortName();
         component.setStoreDisplayName(displayName);
-        component.setStoreShortName(shortName);
     }
 
     private void parseAll() {
@@ -58,7 +56,7 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         parseStock();
         parseTitleElement();
         parseImageUrl();
-        parseBrand();
+        parseBrandName();
         parseProperties();
     }
 
@@ -98,7 +96,7 @@ public class CitilinkElementParser<T extends ComputerComponent> {
 
     private void parseSerialIdentifier() {
         String titleAttr = titleElement.attr("title");
-        String idRegex = "\\[(.*?)\\]";
+        String idRegex = "\\[(.*?)]";
         Pattern pattern = Pattern.compile(idRegex);
         Matcher matcher = pattern.matcher(titleAttr);
         if (matcher.find()) {
@@ -125,10 +123,10 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         component.setImageUrl(imageUrl);
     }
 
-    private void parseBrand() {
+    private void parseBrandName() {
         String title = component.getDisplayTitle();
         String brand = title.split(" ")[1];
-        component.setBrand(brand);
+        component.setBrandName(brand);
     }
 
     private void parseProperties() {

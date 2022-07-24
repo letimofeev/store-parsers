@@ -15,10 +15,13 @@ public class GraphicsCardPrice {
 
     @lombok.Setter
     @lombok.Getter
-    private int storeId;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     @lombok.Setter
     @lombok.Getter
+    @Column(name = "graphics_card_id")
     private int graphicsCardId;
 
     @lombok.Setter
@@ -39,5 +42,15 @@ public class GraphicsCardPrice {
     private LocalDateTime timestamp;
 
     public GraphicsCardPrice() {
+    }
+
+    public GraphicsCardPrice(Store store, int graphicsCardId, int price,
+                             String url, boolean stock) {
+        this.store = store;
+        this.graphicsCardId = graphicsCardId;
+        this.price = price;
+        this.url = url;
+        this.stock = stock;
+        timestamp = LocalDateTime.now();
     }
 }

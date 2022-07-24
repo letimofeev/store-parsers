@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Integer> {
-    Optional<Store> findByShortName(String shortName);
+    Optional<Store> findByDisplayNameLower(String shortName);
 }

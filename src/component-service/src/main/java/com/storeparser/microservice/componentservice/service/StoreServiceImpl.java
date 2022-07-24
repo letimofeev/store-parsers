@@ -1,6 +1,5 @@
 package com.storeparser.microservice.componentservice.service;
 
-import com.storeparser.microservice.componentservice.entity.GraphicsCard;
 import com.storeparser.microservice.componentservice.entity.Store;
 import com.storeparser.microservice.componentservice.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +14,15 @@ public class StoreServiceImpl implements StoreService {
     private StoreRepository storeRepository;
 
     @Override
-    public Store saveFromGraphicsCard(GraphicsCard graphicsCard) {
-        String storeShortName = graphicsCard.getStoreShortName();
-        Optional<Store> storeOptional = storeRepository.findByShortName(storeShortName);
-        Store store;
+    public Store save(Store store) {
+        String displayNameLower = store.getDisplayNameLower();
+        Optional<Store> storeOptional =
+                storeRepository.findByDisplayNameLower(displayNameLower);
         if (storeOptional.isEmpty()) {
-            store = new Store();
-            store.setShortName(storeShortName);
-            store.setDisplayName(graphicsCard.getStoreDisplayName());
-            storeRepository.save(store);
-        } else {
-            store = storeOptional.get();
+            return storeRepository.save(store);
         }
+        int id = storeOptional.get().getId();
+        store.setId(id);
         return store;
     }
 }
