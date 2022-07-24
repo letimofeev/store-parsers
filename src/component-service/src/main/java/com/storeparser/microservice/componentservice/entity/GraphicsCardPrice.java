@@ -1,8 +1,11 @@
 package com.storeparser.microservice.componentservice.entity;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "graphics_card_price")
 public class GraphicsCardPrice {
@@ -40,9 +43,6 @@ public class GraphicsCardPrice {
     @lombok.Setter
     @lombok.Getter
     private LocalDateTime timestamp;
-
-    public GraphicsCardPrice() {
-    }
 
     public GraphicsCardPrice(Store store, int graphicsCardId, int price,
                              String url, boolean stock) {

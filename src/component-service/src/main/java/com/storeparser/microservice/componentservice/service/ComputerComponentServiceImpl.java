@@ -16,7 +16,7 @@ public class ComputerComponentServiceImpl implements ComputerComponentService {
     private StoreService storeService;
 
     @Autowired
-    private BrandService brandService;
+    private VendorService vendorService;
 
     @Autowired
     private GraphicsCardService cardService;
@@ -31,17 +31,17 @@ public class ComputerComponentServiceImpl implements ComputerComponentService {
                 GraphicsCardRaw.class);
         GraphicsCard graphicsCard = objectMapper.readValue(graphicsCardRawJson,
                 GraphicsCard.class);
-        Brand brand = new Brand(graphicsCardRaw.getBrandName());
+        Vendor vendor = new Vendor(graphicsCardRaw.getVendorName());
         Store store = new Store(graphicsCardRaw.getStoreDisplayName());
-        brandService.save(brand);
-        graphicsCard.setBrand(brand);
+        vendorService.save(vendor);
+        graphicsCard.setVendor(vendor);
         storeService.save(store);
         cardService.save(graphicsCard);
         GraphicsCardPrice cardPrice = new GraphicsCardPrice(store,
                 graphicsCard.getId(),
                 graphicsCardRaw.getPrice(),
                 graphicsCardRaw.getUrl(),
-                graphicsCardRaw.getStock());
+                graphicsCardRaw.isStock());
         cardPriceService.save(cardPrice);
         return graphicsCard;
     }

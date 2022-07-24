@@ -13,9 +13,6 @@ public class GraphicsCard extends ComputerComponent {
     private String additionalPowerConnectors;
     private String recommendedPowerSupply;
 
-    public GraphicsCard() {
-    }
-
     public String getConnector() {
         return connector;
     }

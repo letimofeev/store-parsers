@@ -1,13 +1,13 @@
 package com.storeparser.microservice.componentservice.repository;
 
-import com.storeparser.microservice.componentservice.entity.Brand;
+import com.storeparser.microservice.componentservice.entity.Vendor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface BrandRepository extends JpaRepository<Brand, Integer> {
+public interface VendorRepository extends JpaRepository<Vendor, Integer> {
 
-    Optional<Brand> findByDisplayNameLower(String displayNameLower);
+    Optional<Vendor> findByDisplayNameLower(String displayNameLower);
 }

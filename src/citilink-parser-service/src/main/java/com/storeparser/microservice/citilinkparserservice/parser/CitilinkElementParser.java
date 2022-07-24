@@ -56,7 +56,7 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         parseStock();
         parseTitleElement();
         parseImageUrl();
-        parseBrandName();
+        parsVendorName();
         parseProperties();
     }
 
@@ -124,10 +124,10 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         component.setImageUrl(imageUrl);
     }
 
-    private void parseBrandName() {
+    private void parsVendorName() {
         String title = component.getDisplayTitle();
         String brand = title.split(" ")[1];
-        component.setBrandName(brand);
+        component.setVendorName(brand);
     }
 
     private void parseProperties() {

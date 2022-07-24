@@ -1,10 +1,12 @@
 package com.storeparser.microservice.componentservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "graphics_card")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -36,11 +38,8 @@ public class GraphicsCard {
     private List<GraphicsCardPrice> prices;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
-
-    public GraphicsCard() {
-    }
+    @JoinColumn(name = "vendor_id")
+    private Vendor vendor;
 
     public int getId() {
         return id;
@@ -170,12 +169,12 @@ public class GraphicsCard {
         this.prices = prices;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public Vendor getVendor() {
+        return vendor;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
     }
 
     @Override
@@ -197,7 +196,7 @@ public class GraphicsCard {
                 ", recommendedPowerSupply='" + recommendedPowerSupply + '\'' +
                 ", GPUFrequency='" + GPUFrequency + '\'' +
                 ", prices=" + prices +
-                ", brand=" + brand +
+                ", vendor=" + vendor +
                 '}';
     }
 }

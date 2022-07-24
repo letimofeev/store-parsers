@@ -4,7 +4,7 @@ public abstract class ComputerComponent {
 
     protected String serialIdentifier;
     protected String displayTitle;
-    protected String brandName;
+    protected String vendorName;
     protected String model;
     protected String url;
     protected String imageUrl;
@@ -28,12 +28,12 @@ public abstract class ComputerComponent {
         this.displayTitle = displayTitle;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getVendorName() {
+        return vendorName;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
     public String getModel() {
@@ -76,7 +76,7 @@ public abstract class ComputerComponent {
         this.storeDisplayName = storeDisplayName;
     }
 
-    public boolean getStock() {
+    public boolean isStock() {
         return stock;
     }
 

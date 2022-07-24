@@ -1,5 +1,8 @@
 package com.storeparser.microservice.componentservice.entity;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class GraphicsCardRaw {
 
     private String serialIdentifier;
@@ -8,7 +11,7 @@ public class GraphicsCardRaw {
     private String url;
     private String imageUrl;
     private String storeDisplayName;
-    private String brandName;
+    private String vendorName;
     private String connector;
     private String busWidth;
     private String videoChipset;
@@ -21,9 +24,6 @@ public class GraphicsCardRaw {
     private String GPUFrequency;
     private int price;
     private boolean stock;
-
-    public GraphicsCardRaw() {
-    }
 
     public String getSerialIdentifier() {
         return serialIdentifier;
@@ -73,12 +73,12 @@ public class GraphicsCardRaw {
         this.storeDisplayName = storeDisplayName;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public String getVendorName() {
+        return vendorName;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
     public String getConnector() {
@@ -169,7 +169,7 @@ public class GraphicsCardRaw {
         this.price = price;
     }
 
-    public boolean getStock() {
+    public boolean isStock() {
         return stock;
     }
 
@@ -186,7 +186,7 @@ public class GraphicsCardRaw {
                 ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", storeDisplayName='" + storeDisplayName + '\'' +
-                ", brandName='" + brandName + '\'' +
+                ", vendorName='" + vendorName + '\'' +
                 ", connector='" + connector + '\'' +
                 ", busWidth='" + busWidth + '\'' +
                 ", videoChipset='" + videoChipset + '\'' +

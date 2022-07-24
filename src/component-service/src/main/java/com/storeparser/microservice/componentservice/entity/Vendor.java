@@ -1,11 +1,14 @@
 package com.storeparser.microservice.componentservice.entity;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Locale;
 
+@NoArgsConstructor
 @Entity
-@Table(name = "brand")
-public class Brand {
+@Table(name = "vendor")
+public class Vendor {
 
     @lombok.Setter
     @lombok.Getter
@@ -21,10 +24,7 @@ public class Brand {
     @lombok.Getter
     private String displayNameLower;
 
-    public Brand() {
-    }
-
-    public Brand(String displayName) {
+    public Vendor(String displayName) {
         this.displayName = displayName;
         displayNameLower = displayName.toLowerCase(Locale.ROOT);
     }
