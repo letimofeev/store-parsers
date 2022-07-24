@@ -4,7 +4,6 @@ import com.storeparser.microservice.citilinkparserservice.config.CitilinkUrls;
 import com.storeparser.microservice.citilinkparserservice.entity.GraphicsCard;
 import com.storeparser.microservice.citilinkparserservice.service.ComputerComponentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

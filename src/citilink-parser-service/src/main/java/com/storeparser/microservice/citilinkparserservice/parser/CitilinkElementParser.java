@@ -100,7 +100,8 @@ public class CitilinkElementParser<T extends ComputerComponent> {
         Pattern pattern = Pattern.compile(idRegex);
         Matcher matcher = pattern.matcher(titleAttr);
         if (matcher.find()) {
-            String serialNumber = matcher.group(1);
+            String serialNumber = matcher.group(1)
+                    .replace(" bulk", "");
             component.setSerialIdentifier(serialNumber);
         }
     }

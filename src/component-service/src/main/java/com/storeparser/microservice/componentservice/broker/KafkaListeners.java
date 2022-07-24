@@ -6,6 +6,7 @@ import com.storeparser.microservice.componentservice.service.ComputerComponentSe
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
@@ -16,16 +17,12 @@ public class KafkaListeners {
     @Autowired
     private ComputerComponentService serviceManager;
 
+    @RetryableTopic
     @KafkaListener(topics = "${kafka.topic-name.graphics-card}" , groupId = "groupId")
-    public void listenGraphicsCard(@Payload String graphicsCardRawJson) {
-
+    public void listenGraphicsCard(@Payload String graphicsCardRawJson) throws JsonProcessingException {
         log.info("Raw graphics card json received: {}", graphicsCardRawJson);
-        try {
-            GraphicsCard graphicsCard =
-                    serviceManager.saveGraphicsCardWithDependent(graphicsCardRawJson);
-            log.info("Saved graphics card: {}", graphicsCard);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        GraphicsCard graphicsCard =
+                serviceManager.saveGraphicsCardWithDependent(graphicsCardRawJson);
+        log.info("Saved graphics card: {}", graphicsCard);
     }
 }
