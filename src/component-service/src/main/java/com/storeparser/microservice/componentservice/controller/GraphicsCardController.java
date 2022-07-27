@@ -7,6 +7,8 @@ import com.storeparser.microservice.componentservice.service.GraphicsCardService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class GraphicsCardController {
 
@@ -16,8 +18,13 @@ public class GraphicsCardController {
     @Autowired
     private GraphicsCardRawService cardRawService;
 
+    @GetMapping("/graphics-cards")
+    public List<GraphicsCard> findAllGraphicsCards() {
+        return cardService.findAll();
+    }
+
     @GetMapping("/graphics-cards/{id}")
-    public GraphicsCard getGraphicsCard(@PathVariable int id) {
+    public GraphicsCard findGraphicsCard(@PathVariable int id) {
         return cardService.findById(id);
     }
 
