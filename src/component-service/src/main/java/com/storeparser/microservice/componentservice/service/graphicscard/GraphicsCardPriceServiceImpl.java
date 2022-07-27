@@ -1,4 +1,4 @@
-package com.storeparser.microservice.componentservice.service;
+package com.storeparser.microservice.componentservice.service.graphicscard;
 
 import com.storeparser.microservice.componentservice.entity.GraphicsCardPrice;
 import com.storeparser.microservice.componentservice.repository.GraphicsCardPriceRepository;

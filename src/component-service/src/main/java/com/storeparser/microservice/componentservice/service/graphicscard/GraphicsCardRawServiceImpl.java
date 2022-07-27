@@ -1,8 +1,10 @@
-package com.storeparser.microservice.componentservice.service;
+package com.storeparser.microservice.componentservice.service.graphicscard;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.storeparser.microservice.componentservice.entity.*;
+import com.storeparser.microservice.componentservice.service.StoreService;
+import com.storeparser.microservice.componentservice.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.stereotype.Service;

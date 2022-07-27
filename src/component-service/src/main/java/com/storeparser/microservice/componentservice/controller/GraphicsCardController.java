@@ -2,8 +2,8 @@ package com.storeparser.microservice.componentservice.controller;
 
 import com.storeparser.microservice.componentservice.entity.GraphicsCard;
 import com.storeparser.microservice.componentservice.entity.GraphicsCardRaw;
-import com.storeparser.microservice.componentservice.service.GraphicsCardRawService;
-import com.storeparser.microservice.componentservice.service.GraphicsCardService;
+import com.storeparser.microservice.componentservice.service.graphicscard.GraphicsCardRawService;
+import com.storeparser.microservice.componentservice.service.graphicscard.GraphicsCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

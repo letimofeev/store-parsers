@@ -1,7 +1,7 @@
 package com.storeparser.microservice.componentservice.broker;
 
 import com.storeparser.microservice.componentservice.entity.GraphicsCard;
-import com.storeparser.microservice.componentservice.service.GraphicsCardRawService;
+import com.storeparser.microservice.componentservice.service.graphicscard.GraphicsCardRawService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
