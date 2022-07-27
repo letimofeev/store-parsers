@@ -7,7 +7,7 @@ public class GraphicsCardRaw {
 
     private String serialIdentifier;
     private String displayTitle;
-    private String modelName;
+    private String model;
     private String url;
     private String imageUrl;
     private String storeDisplayName;
@@ -41,12 +41,12 @@ public class GraphicsCardRaw {
         this.displayTitle = displayTitle;
     }
 
-    public String getModelName() {
-        return modelName;
+    public String getModel() {
+        return model;
     }
 
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getUrl() {
@@ -182,7 +182,7 @@ public class GraphicsCardRaw {
         return "GraphicsCardRaw{" +
                 "serialIdentifier='" + serialIdentifier + '\'' +
                 ", displayTitle='" + displayTitle + '\'' +
-                ", modelName='" + modelName + '\'' +
+                ", model='" + model + '\'' +
                 ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", storeDisplayName='" + storeDisplayName + '\'' +

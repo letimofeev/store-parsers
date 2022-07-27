@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
 public class KafkaListeners {
 
     @Autowired
-    private ComputerComponentService serviceManager;
+    private ComputerComponentService componentService;
 
     @RetryableTopic
     @KafkaListener(topics = "${kafka.topic-name.graphics-card}" , groupId = "groupId")
-    public void listenGraphicsCard(@Payload String graphicsCardRawJson) throws JsonProcessingException {
+    public void listenGraphicsCard(@Payload String graphicsCardRawJson) {
         log.info("Raw graphics card json received: {}", graphicsCardRawJson);
         GraphicsCard graphicsCard =
-                serviceManager.saveGraphicsCardWithDependent(graphicsCardRawJson);
+                componentService.saveGraphicsCardWithDependent(graphicsCardRawJson);
         log.info("Saved graphics card: {}", graphicsCard);
     }
 }

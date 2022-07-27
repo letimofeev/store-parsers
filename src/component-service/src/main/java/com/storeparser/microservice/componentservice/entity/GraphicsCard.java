@@ -23,15 +23,13 @@ public class GraphicsCard {
     private String connector;
     private String busWidth;
     private String videoChipset;
+    private String GPUFrequency;
     private String videoMemoryFrequency;
     private String videoMemorySize;
     private String videoMemoryType;
     private String technologySupport;
     private String additionalPowerConnectors;
     private String recommendedPowerSupply;
-
-    @Column(name = "gpu_frequency")
-    private String GPUFrequency;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "vendor_id")
