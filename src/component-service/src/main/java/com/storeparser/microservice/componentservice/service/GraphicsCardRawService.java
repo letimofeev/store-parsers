@@ -3,9 +3,9 @@ package com.storeparser.microservice.componentservice.service;
 import com.storeparser.microservice.componentservice.entity.GraphicsCard;
 import com.storeparser.microservice.componentservice.entity.GraphicsCardRaw;
 
-public interface ComputerComponentService {
+public interface GraphicsCardRawService {
 
-    GraphicsCard saveGraphicsCardWithDependent(String graphicsCardRawJson);
+    GraphicsCard saveWithDependencies(String graphicsCardRawJson);
 
-    GraphicsCard saveGraphicsCardWithDependent(GraphicsCardRaw graphicsCardRaw);
+    GraphicsCard saveWithDependencies(GraphicsCardRaw graphicsCardRaw);
 }

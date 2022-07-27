@@ -1,15 +1,16 @@
 package com.storeparser.microservice.componentservice.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.io.JsonEOFException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.storeparser.microservice.componentservice.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ComputerComponentServiceImpl implements ComputerComponentService {
+@Transactional
+public class GraphicsCardRawServiceImpl implements GraphicsCardRawService {
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -27,7 +28,7 @@ public class ComputerComponentServiceImpl implements ComputerComponentService {
     private GraphicsCardPriceService cardPriceService;
 
     @Override
-    public GraphicsCard saveGraphicsCardWithDependent(String graphicsCardRawJson) {
+    public GraphicsCard saveWithDependencies(String graphicsCardRawJson) {
         try {
             GraphicsCardRaw graphicsCardRaw = objectMapper.readValue(graphicsCardRawJson,
                     GraphicsCardRaw.class);
@@ -52,10 +53,10 @@ public class ComputerComponentServiceImpl implements ComputerComponentService {
     }
 
     @Override
-    public GraphicsCard saveGraphicsCardWithDependent(GraphicsCardRaw graphicsCardRaw) {
+    public GraphicsCard saveWithDependencies(GraphicsCardRaw graphicsCardRaw) {
         try {
             String json = objectMapper.writeValueAsString(graphicsCardRaw);
-            return saveGraphicsCardWithDependent(json);
+            return saveWithDependencies(json);
         } catch (JsonProcessingException e) {
             throw new JsonParseException(e);
         }

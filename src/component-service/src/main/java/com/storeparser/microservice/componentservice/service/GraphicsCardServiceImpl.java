@@ -30,6 +30,11 @@ public class GraphicsCardServiceImpl implements GraphicsCardService {
     }
 
     @Override
+    public GraphicsCard update(GraphicsCard graphicsCard) {
+        return cardRepository.save(graphicsCard);
+    }
+
+    @Override
     public GraphicsCard findById(int id) {
         Optional<GraphicsCard> cardOptional = cardRepository.findById(id);
         if (cardOptional.isEmpty()) {

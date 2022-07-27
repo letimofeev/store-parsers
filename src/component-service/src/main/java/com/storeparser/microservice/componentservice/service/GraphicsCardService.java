@@ -6,5 +6,7 @@ public interface GraphicsCardService {
 
     GraphicsCard save(GraphicsCard graphicsCard);
 
+    GraphicsCard update(GraphicsCard graphicsCard);
+
     GraphicsCard findById(int id);
 }
