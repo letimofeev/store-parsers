@@ -33,10 +33,6 @@ public class GraphicsCard {
     @Column(name = "gpu_frequency")
     private String GPUFrequency;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "graphics_card_id", referencedColumnName = "id")
-    private List<GraphicsCardPrice> prices;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
@@ -161,14 +157,6 @@ public class GraphicsCard {
         this.GPUFrequency = GPUFrequency;
     }
 
-    public List<GraphicsCardPrice> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(List<GraphicsCardPrice> prices) {
-        this.prices = prices;
-    }
-
     public Vendor getVendor() {
         return vendor;
     }
@@ -195,7 +183,6 @@ public class GraphicsCard {
                 ", additionalPowerConnectors='" + additionalPowerConnectors + '\'' +
                 ", recommendedPowerSupply='" + recommendedPowerSupply + '\'' +
                 ", GPUFrequency='" + GPUFrequency + '\'' +
-                ", prices=" + prices +
                 ", vendor=" + vendor +
                 '}';
     }
