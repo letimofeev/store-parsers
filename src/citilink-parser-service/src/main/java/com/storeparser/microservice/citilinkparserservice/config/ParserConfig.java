@@ -7,22 +7,11 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "citilink.parser")
 public class ParserConfig {
 
+    @lombok.Setter
+    @lombok.Getter
     private int timeout;
+
+    @lombok.Setter
+    @lombok.Getter
     private int maxThreadNumber;
-
-    public int getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(int timeout) {
-        this.timeout = timeout;
-    }
-
-    public int getMaxThreadNumber() {
-        return maxThreadNumber;
-    }
-
-    public void setMaxThreadNumber(int maxThreadNumber) {
-        this.maxThreadNumber = maxThreadNumber;
-    }
 }

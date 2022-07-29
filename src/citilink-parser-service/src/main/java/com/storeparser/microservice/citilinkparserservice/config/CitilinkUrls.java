@@ -7,22 +7,12 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "citilink.url")
 public class CitilinkUrls {
 
+    @lombok.Setter
+    @lombok.Getter
     private String home;
+
+    @lombok.Setter
+    @lombok.Getter
     private String graphicsCard;
 
-    public String getHome() {
-        return home;
-    }
-
-    public void setHome(String home) {
-        this.home = home;
-    }
-
-    public String getGraphicsCard() {
-        return graphicsCard;
-    }
-
-    public void setGraphicsCard(String graphicsCard) {
-        this.graphicsCard = graphicsCard;
-    }
 }
