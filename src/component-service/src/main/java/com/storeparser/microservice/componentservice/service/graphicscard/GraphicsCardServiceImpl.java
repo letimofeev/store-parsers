@@ -1,6 +1,7 @@
 package com.storeparser.microservice.componentservice.service.graphicscard;
 
 import com.storeparser.microservice.componentservice.entity.GraphicsCard;
+import com.storeparser.microservice.componentservice.entity.NoSuchGraphicsCardException;
 import com.storeparser.microservice.componentservice.repository.GraphicsCardRepository;
 import com.storeparser.microservice.componentservice.utils.GraphicsCardExistenceResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -30,7 +30,7 @@ public class GraphicsCardServiceImpl implements GraphicsCardService {
     public GraphicsCard findById(int id) {
         Optional<GraphicsCard> cardOptional = cardRepository.findById(id);
         if (cardOptional.isEmpty()) {
-            throw new NoSuchElementException(String.format(
+            throw new NoSuchGraphicsCardException(String.format(
                     "There is no GraphicsCard with ID = %d in Database", id));
         }
         return cardOptional.get();
