@@ -1,18 +1,17 @@
 package com.storeparser.microservice.citilinkparserservice.config;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+@Getter
+@Setter
 @Component
 @ConfigurationProperties(prefix = "citilink.url")
 public class CitilinkUrls {
 
-    @lombok.Setter
-    @lombok.Getter
     private String home;
-
-    @lombok.Setter
-    @lombok.Getter
     private String graphicsCard;
 
 }

@@ -1,27 +1,24 @@
 package com.storeparser.microservice.componentservice.entity;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Locale;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "store")
 public class Store {
 
-    @lombok.Setter
-    @lombok.Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @lombok.Setter
-    @lombok.Getter
     private String displayName;
-
-    @lombok.Setter
-    @lombok.Getter
     private String displayNameLower;
 
     public Store(String displayName) {
