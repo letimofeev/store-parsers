@@ -2,9 +2,11 @@ package com.storeparser.microservice.citilinkparserservice.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class GraphicsCard extends ComputerComponent {
 
     private String connector;

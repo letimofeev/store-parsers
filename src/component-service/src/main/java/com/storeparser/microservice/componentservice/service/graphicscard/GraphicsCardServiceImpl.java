@@ -1,7 +1,6 @@
 package com.storeparser.microservice.componentservice.service.graphicscard;
 
 import com.storeparser.microservice.componentservice.entity.GraphicsCard;
-import com.storeparser.microservice.componentservice.entity.NoSuchGraphicsCardException;
 import com.storeparser.microservice.componentservice.repository.GraphicsCardRepository;
 import com.storeparser.microservice.componentservice.utils.GraphicsCardExistenceResolver;
 import org.springframework.beans.factory.annotation.Autowired;

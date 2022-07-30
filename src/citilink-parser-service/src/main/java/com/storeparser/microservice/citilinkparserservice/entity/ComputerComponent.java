@@ -2,9 +2,11 @@ package com.storeparser.microservice.citilinkparserservice.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public abstract class ComputerComponent {
 
     protected String serialIdentifier;
